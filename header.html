@@ -1,0 +1,69 @@
+</head>
+
+<body class="bg-light">
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="index.php">DRyft</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+				aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarContent">
+				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+<?php
+// Obscure some menu items based on the user type
+if (!$user instanceof DRyft\User) {
+?>
+					<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+<?php
+} else {
+	if ($user->isCoordinator()) {
+?>
+					<li class="nav-item"><a class="nav-link" href="ride.php">Ride Requests</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="driverDropdown" data-bs-toggle="dropdown" aria-expanded="false">Drivers</a>
+						<ul class="dropdown-menu" aria-labelledby="driverDropdown">
+							<li><a class="dropdown-item" href="driver.php">List Drivers</a></li>
+							<li><a class="dropdown-item" href="payments.php">Payments</a></li>
+							<li><a class="dropdown-item" href="user.php?action=new&userType=Driver">Create New</a></li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">Users</a>
+						<ul class="dropdown-menu" aria-labelledby="userDropdown">
+							<li><a class="dropdown-item" href="user.php">List Users</a></li>
+							<li><a class="dropdown-item" href="user.php?action=new">Create New</a></li>
+						</ul>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="address.php">Addresses</a></li>
+
+<?php
+	}
+
+	if ($user->isClient()) {
+?>
+					<li class="nav-item"><a class="nav-link" href="ride.php">Ride Requests</a></li>
+					<li class="nav-item"><a class="nav-link" href="address.php">Addresses</a></li>
+<?php
+	}
+
+	if ($user->isDriver()) {
+?>
+					<li class="nav-item"><a class="nav-link" href="driver.php">Drives</a></li>
+					<li class="nav-item"><a class="nav-link" href="payments.php">Payments</a></li>
+<?php
+	}
+?>
+					<li class="nav-item"><a class="nav-link" href="login.php?logout">Logout</a></li>
+<?php
+}
+?>
+				</ul>
+				<form><input class="form-control" type="text" placeholder="Search" aria-label="Search"></form>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<main>

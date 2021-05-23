@@ -1,0 +1,96 @@
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+
+<?php
+// show navigation items based on type of user
+if (!$user instanceof ToT\User) { 
+?>            
+            <!-- not logged in -->
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="menu.php">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.php">Login</a>
+            </li>
+
+            <?php
+            } else {
+              if ($user->isCustomer()) {
+            ?>            
+            <!-- logged in as a customer -->
+            <li class="nav-item active">
+                <!--<a class="nav-link" href="customerIndex.php">Home <span class="sr-only"></span></a> -->
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="menu.php">Menu</a>
+            </li>
+            <li class="nav-item">
+                  <!--<a class="nav-link" href="customerMakeReservation.php">Reservations</a> -->
+            </li>
+
+            <?php
+            }
+
+            if ($user->isHost()) {
+            ?>
+            <!-- logged in as a host -->
+            <li class="nav-item active">
+                <a class="nav-link" href="hostIndex.php">Home <span class="sr-only"></span></a>
+            </li>
+            <?php
+            }
+          
+            if ($user->isWaiter()) {
+            ?>
+            <!-- logged in as a waiter -->
+            <li class="nav-item active">
+                <a class="nav-link" href="waitStaffIndex.php">Home <span class="sr-only"></span></a>
+            </li>
+            <?php
+            }
+          
+            if ($user->isManager()) {
+            ?>
+            <!-- logged in as a manager -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="menu.php">Menu</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="hostIndex.php">Reservations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="employees.php">Employees</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="createAccount.php">Create New Account</a>
+          </li>
+            <?php
+            }
+            ?>
+            <!-- if they are logged in as any type of user -->
+            <li class="nav-item">
+              <form class="nav-link" method="post">
+                <input type="submit" name="logout" class="button" value="Log Out" style="border:none; background-color: #f8f9fa; color:rgba(0,0,0,.55)"/>
+              </form>
+            </li>
+            <?php
+            }
+            ?>
+          </ul>
+        </div>
+      </nav>
+    <div class="container">
+	<main>
