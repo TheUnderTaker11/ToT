@@ -1,4 +1,8 @@
 # ToT Project for CSCI 562, with Clay, Austin, David, and Chris
+This is a reservation and order management system for a hypothetical restaurant. It allows customers to make a reservation, then while at the restaurant it allows them to order what they want. Then once finished they can pay and the order will be marked as complete. On the employee side, the wait staff is able to assign tables to the reservations, see their orders, and edit those orders if need be. 
+
+This was a group project, consisting of 4 total members.
+
 Link to Index: https://turing.cs.olemiss.edu/~tot/tot/
 
 # Default User Logins - All passwords are "test123"
